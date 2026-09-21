@@ -1,0 +1,1207 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio professionnel 3D de DOUMOU OUSSAMA — Technicien en Électricité Industrielle."
+    />
+    <title>DOUMOU OUSSAMA — Portfolio 3D</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #05070b;
+        --panel: rgba(13, 18, 28, 0.72);
+        --panel2: rgba(255, 255, 255, 0.035);
+        --line: rgba(255, 255, 255, 0.11);
+        --text: #f5f8fc;
+        --muted: #96a3b5;
+        --cyan: #63eaff;
+        --violet: #927cff;
+        --green: #78f0b0;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: Inter, Arial, sans-serif;
+        background:
+          radial-gradient(
+            circle at 10% 10%,
+            rgba(99, 234, 255, 0.11),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 90% 15%,
+            rgba(146, 124, 255, 0.13),
+            transparent 30%
+          ),
+          var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      #particles {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -3;
+      }
+      .noise {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        pointer-events: none;
+        opacity: 0.025;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+      .cursor,
+      .ring {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+      }
+      .cursor {
+        width: 7px;
+        height: 7px;
+        background: var(--cyan);
+        box-shadow: 0 0 20px var(--cyan);
+      }
+      .ring {
+        width: 34px;
+        height: 34px;
+        border: 1px solid rgba(99, 234, 255, 0.7);
+        transition: 0.22s;
+      }
+      .ring.big {
+        width: 60px;
+        height: 60px;
+        border-color: var(--cyan);
+        background: rgba(99, 234, 255, 0.04);
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 6vw;
+        background: rgba(5, 7, 11, 0.65);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--line);
+      }
+      .logo {
+        font-family: "Space Grotesk";
+        font-size: 21px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+      .logo span {
+        color: var(--cyan);
+      }
+      nav {
+        display: flex;
+        gap: 26px;
+      }
+      nav a {
+        font-size: 13px;
+        color: var(--muted);
+        transition: 0.25s;
+      }
+      nav a:hover {
+        color: var(--cyan);
+      }
+
+      section {
+        padding: 105px 7vw;
+      }
+      .container {
+        width: min(1180px, 100%);
+        margin: auto;
+      }
+      .eyebrow {
+        color: var(--cyan);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 17px;
+      }
+      .title {
+        font-family: "Space Grotesk";
+        font-size: clamp(38px, 5.2vw, 68px);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+        margin-bottom: 45px;
+      }
+      .title span {
+        color: var(--cyan);
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        align-items: center;
+        padding-top: 120px;
+      }
+      .hero-grid {
+        width: min(1200px, 100%);
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .hero h1 {
+        font-family: "Space Grotesk";
+        font-size: clamp(55px, 8vw, 105px);
+        line-height: 0.83;
+        letter-spacing: -0.07em;
+      }
+      .outline {
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.68);
+      }
+      .hero-copy {
+        max-width: 700px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.8;
+        margin-top: 28px;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 19px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.04);
+        font-size: 13px;
+        font-weight: 700;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+        border-color: rgba(99, 234, 255, 0.45);
+        box-shadow: 0 16px 45px rgba(0, 0, 0, 0.25);
+      }
+      .btn.primary {
+        background: #fff;
+        color: #05070b;
+        border-color: #fff;
+      }
+      .btn.primary:hover {
+        background: var(--cyan);
+      }
+
+      .profile-stage {
+        position: relative;
+        height: 520px;
+        display: grid;
+        place-items: center;
+        perspective: 1200px;
+      }
+      .photo-card {
+        width: 270px;
+        height: 345px;
+        position: relative;
+        z-index: 5;
+        border: 1px solid rgba(99, 234, 255, 0.35);
+        border-radius: 28px;
+        padding: 9px;
+        background: linear-gradient(
+          145deg,
+          rgba(99, 234, 255, 0.16),
+          rgba(146, 124, 255, 0.08)
+        );
+        transform: rotateY(-8deg) rotateX(4deg);
+        box-shadow:
+          0 35px 90px rgba(0, 0, 0, 0.45),
+          0 0 70px rgba(99, 234, 255, 0.08);
+        animation: float 6s ease-in-out infinite;
+      }
+      .photo-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 21px;
+        display: block;
+      }
+      .photo-caption {
+        position: absolute;
+        left: 24px;
+        right: 24px;
+        bottom: 22px;
+        padding: 13px 15px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 15px;
+        background: rgba(4, 7, 12, 0.72);
+        backdrop-filter: blur(14px);
+      }
+      .photo-caption strong {
+        display: block;
+        font-size: 14px;
+      }
+      .photo-caption span {
+        font-size: 10px;
+        color: var(--cyan);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .orbit {
+        position: absolute;
+        width: 390px;
+        height: 390px;
+        border: 1px solid rgba(99, 234, 255, 0.17);
+        border-radius: 50%;
+        transform: rotateX(68deg) rotateZ(-15deg);
+        animation: spin 14s linear infinite;
+      }
+      .orbit.two {
+        width: 450px;
+        height: 450px;
+        border-color: rgba(146, 124, 255, 0.14);
+        transform: rotateY(65deg) rotateZ(20deg);
+        animation-duration: 19s;
+      }
+      .orbit-dot {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--cyan);
+        box-shadow: 0 0 18px var(--cyan);
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      @keyframes float {
+        50% {
+          transform: translateY(-13px) rotateY(-8deg) rotateX(4deg);
+        }
+      }
+      @keyframes spin {
+        to {
+          transform: rotateX(68deg) rotateZ(345deg);
+        }
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 13px;
+        margin-top: 45px;
+      }
+      .metric {
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: var(--panel);
+      }
+      .metric b {
+        font-family: "Space Grotesk";
+        font-size: 30px;
+        color: var(--cyan);
+      }
+      .metric span {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        margin-top: 6px;
+      }
+
+      .grid3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .card {
+        padding: 25px;
+        border: 1px solid var(--line);
+        border-radius: 23px;
+        background: var(--panel);
+        backdrop-filter: blur(15px);
+        transition: 0.3s;
+        min-height: 180px;
+      }
+      .card:hover {
+        transform: translateY(-7px);
+        border-color: rgba(99, 234, 255, 0.35);
+      }
+      .card .label {
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--cyan);
+        font-weight: 700;
+      }
+      .card h3 {
+        font-size: 20px;
+        margin: 13px 0 10px;
+      }
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+      .card ul {
+        padding-left: 17px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .timeline {
+        border-left: 1px solid var(--line);
+        margin-left: 10px;
+        padding-left: 36px;
+      }
+      .event {
+        position: relative;
+        padding-bottom: 45px;
+      }
+      .event:before {
+        content: "";
+        position: absolute;
+        left: -42px;
+        top: 5px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--cyan);
+        box-shadow: 0 0 17px var(--cyan);
+      }
+      .date {
+        font-size: 11px;
+        color: var(--cyan);
+        font-weight: 700;
+        letter-spacing: 0.12em;
+      }
+      .event h3 {
+        font-size: 21px;
+        margin: 8px 0;
+      }
+      .event p {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .skill-layout {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 25px;
+        align-items: stretch;
+      }
+      .skill-panel {
+        padding: 27px;
+        border: 1px solid var(--line);
+        border-radius: 25px;
+        background: var(--panel);
+      }
+      .skill-row {
+        margin-bottom: 19px;
+      }
+      .skill-head {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+      .skill-head span:last-child {
+        color: var(--cyan);
+        font-size: 11px;
+      }
+      .bar {
+        height: 7px;
+        border-radius: 99px;
+        background: rgba(255, 255, 255, 0.07);
+        overflow: hidden;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        width: var(--w);
+        background: linear-gradient(90deg, var(--cyan), var(--violet));
+        border-radius: inherit;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+      }
+      .tag {
+        padding: 10px 13px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.03);
+        font-size: 12px;
+        color: #dbe4ef;
+      }
+
+      .tech-scene {
+        min-height: 400px;
+        display: grid;
+        place-items: center;
+        perspective: 1000px;
+      }
+      .panel3d {
+        width: min(500px, 90%);
+        height: 300px;
+        position: relative;
+        transform-style: preserve-3d;
+        transform: rotateX(8deg) rotateY(-13deg);
+        animation: panelFloat 7s ease-in-out infinite;
+      }
+      @keyframes panelFloat {
+        50% {
+          transform: translateY(-9px) rotateX(8deg) rotateY(13deg);
+        }
+      }
+      .panel-face {
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(99, 234, 255, 0.3);
+        border-radius: 20px;
+        background: linear-gradient(
+          145deg,
+          rgba(20, 30, 44, 0.95),
+          rgba(8, 12, 19, 0.95)
+        );
+        box-shadow:
+          0 35px 80px rgba(0, 0, 0, 0.5),
+          inset 0 0 40px rgba(99, 234, 255, 0.03);
+      }
+      .panel-inner {
+        position: absolute;
+        inset: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 13px;
+        padding: 20px;
+      }
+      .panel-title {
+        font-family: "Space Grotesk";
+        font-size: 14px;
+        letter-spacing: 0.1em;
+        color: var(--cyan);
+        margin-bottom: 17px;
+      }
+      .circuit {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        align-items: center;
+      }
+      .node {
+        height: 60px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        color: #dfe8f1;
+        font-size: 10px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.025);
+      }
+      .wire {
+        height: 2px;
+        background: linear-gradient(90deg, var(--cyan), var(--violet));
+        box-shadow: 0 0 8px rgba(99, 234, 255, 0.3);
+      }
+      .leds {
+        display: flex;
+        gap: 9px;
+        margin-top: 22px;
+      }
+      .led {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 12px var(--green);
+      }
+      .led:nth-child(2) {
+        background: var(--cyan);
+        box-shadow: 0 0 12px var(--cyan);
+      }
+      .led:nth-child(3) {
+        background: #ffcf68;
+        box-shadow: 0 0 12px #ffcf68;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .info-box {
+        padding: 23px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: var(--panel);
+      }
+      .info-box h3 {
+        font-size: 17px;
+        margin-bottom: 11px;
+      }
+      .info-box p,
+      .info-box li {
+        font-size: 13px;
+        line-height: 1.75;
+        color: var(--muted);
+      }
+      .info-box ul {
+        padding-left: 17px;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .contact {
+        padding: 25px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: linear-gradient(
+          145deg,
+          rgba(99, 234, 255, 0.07),
+          rgba(146, 124, 255, 0.05)
+        );
+        transition: 0.3s;
+      }
+      .contact:hover {
+        transform: translateY(-5px);
+        border-color: rgba(99, 234, 255, 0.35);
+      }
+      .contact strong {
+        display: block;
+        margin-bottom: 7px;
+      }
+      .contact span {
+        color: var(--muted);
+        font-size: 13px;
+        word-break: break-word;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(25px);
+        transition: 0.75s ease;
+      }
+      .reveal.show {
+        opacity: 1;
+        transform: none;
+      }
+      .float-info {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        z-index: 500;
+        padding: 13px 16px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: rgba(7, 10, 16, 0.78);
+        backdrop-filter: blur(15px);
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .float-info b {
+        color: var(--cyan);
+      }
+      footer {
+        padding: 35px 7vw;
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        color: #6e7b8d;
+        font-size: 11px;
+      }
+
+      @media (max-width: 850px) {
+        body {
+          cursor: auto;
+        }
+        .cursor,
+        .ring {
+          display: none;
+        }
+        header {
+          padding: 0 5vw;
+        }
+        nav {
+          display: none;
+        }
+        section {
+          padding: 80px 6vw;
+        }
+        .hero {
+          padding-top: 110px;
+        }
+        .hero-grid,
+        .skill-layout {
+          grid-template-columns: 1fr;
+        }
+        .profile-stage {
+          height: 400px;
+          order: -1;
+        }
+        .photo-card {
+          width: 230px;
+          height: 295px;
+        }
+        .orbit {
+          width: 320px;
+          height: 320px;
+        }
+        .orbit.two {
+          width: 360px;
+          height: 360px;
+        }
+        .grid3,
+        .metrics,
+        .info-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .metrics {
+          gap: 10px;
+        }
+        .metric {
+          padding: 16px;
+        }
+        .floating-info {
+          right: 12px;
+          bottom: 12px;
+          font-size: 9px;
+        }
+        footer {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="particles"></canvas>
+    <div class="noise"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="ring" id="ring"></div>
+
+    <header>
+      <a href="#home" class="logo">DOUMOU<span>.</span></a>
+      <nav>
+        <a href="#profil">Profil</a>
+        <a href="#experience">Expérience</a>
+        <a href="#competences">Compétences</a>
+        <a href="#formation">Formation</a>
+        <a href="#outils">Outils</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-grid">
+          <div class="reveal">
+            <div class="eyebrow">Tanger · Maroc · Portfolio professionnel</div>
+            <h1>DOUMOU<br /><span class="outline">OUSSAMA</span></h1>
+            <p class="hero-copy">
+              Technicien en maintenance électrique industrielle, motivé et
+              curieux, avec une formation en électricité industrielle et une
+              expérience en maintenance, dépannage et électricité de bâtiment.
+            </p>
+            <div class="actions">
+              <a
+                href="CV.DOUMOU.pdf"
+                download="CV.DOUMOU.pdf"
+                class="btn primary"
+              >
+                Télécharger mon CV ↗
+              </a>
+              <a class="btn" href="#contact">Voir les coordonnées</a>
+            </div>
+
+            <div class="metrics">
+              <div class="metric">
+                <b>3</b><span>Diplômes / formations</span>
+              </div>
+              <div class="metric"><b>3</b><span>Expériences listées</span></div>
+              <div class="metric"><b>4</b><span>Hard skills CV</span></div>
+              <div class="metric">
+                <b>3</b><span>Outils informatiques</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-stage reveal">
+            <div class="orbit"><i class="orbit-dot"></i></div>
+            <div class="orbit two"><i class="orbit-dot"></i></div>
+            <div class="photo-card">
+              <img
+                src="doumou.jpeg"
+                alt="Portrait de DOUMOU OUSSAMA extrait du CV"
+              />
+              <div class="photo-caption">
+                <strong>DOUMOU OUSSAMA</strong>
+                <span>Technicien en Électricité Industrielle</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="profil">
+        <div class="container">
+          <div class="eyebrow reveal">01 · Profil</div>
+          <h2 class="title reveal">Un profil <span>terrain.</span></h2>
+
+          <div class="grid3">
+            <article class="card reveal">
+              <div class="label">Position</div>
+              <h3>Électricité industrielle</h3>
+              <p>
+                Le CV présente DOUMOU OUSSAMA comme technicien en maintenance
+                électrique industrielle.
+              </p>
+            </article>
+
+            <article class="card reveal">
+              <div class="label">Approche</div>
+              <h3>Diagnostic & dépannage</h3>
+              <p>
+                Les compétences indiquées dans le CV couvrent la maintenance
+                électrique, le dépannage industriel, les schémas électriques et
+                le diagnostic de pannes.
+              </p>
+            </article>
+
+            <article class="card reveal">
+              <div class="label">Objectif</div>
+              <h3>Évolution technique</h3>
+              <p>
+                Le profil indique une volonté de développer ses compétences
+                techniques et d’apprendre de nouvelles technologies dans le
+                domaine industriel.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="container">
+          <div class="eyebrow reveal">02 · Expériences professionnelles</div>
+          <h2 class="title reveal">Un parcours <span>diversifié.</span></h2>
+
+          <div class="timeline">
+            <div class="event reveal">
+              <div class="date">2021 — 2026</div>
+              <h3>Électricien de Bâtiment · Freelance</h3>
+              <p>
+                Tanger. Expérience indiquée dans le CV en électricité de
+                bâtiment.
+              </p>
+            </div>
+
+            <div class="event reveal">
+              <div class="date">2022 — 2024</div>
+              <h3>
+                Technicien Stagiaire en Électricité — Maintenance Industrielle
+              </h3>
+              <p>Jacob Delafon, Tanger.</p>
+            </div>
+
+            <div class="event reveal">
+              <div class="date">2024 — 2025</div>
+              <h3>Commis chef pâtisserie</h3>
+              <p>Pâtisserie El Zaydi, Tanger.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="competences">
+        <div class="container">
+          <div class="eyebrow reveal">03 · Compétences</div>
+          <h2 class="title reveal">Compétences <span>techniques.</span></h2>
+
+          <div class="skill-layout">
+            <div class="skill-panel reveal">
+              <div class="label">Hard skills — selon le CV</div>
+
+              <div class="skill-row" style="margin-top: 22px">
+                <div class="skill-head">
+                  <span>Maintenance électrique</span><span>CV</span>
+                </div>
+                <div class="bar"><i style="--w: 92%"></i></div>
+              </div>
+
+              <div class="skill-row">
+                <div class="skill-head">
+                  <span>Dépannage industriel</span><span>CV</span>
+                </div>
+                <div class="bar"><i style="--w: 88%"></i></div>
+              </div>
+
+              <div class="skill-row">
+                <div class="skill-head">
+                  <span>Schémas électriques</span><span>CV</span>
+                </div>
+                <div class="bar"><i style="--w: 84%"></i></div>
+              </div>
+
+              <div class="skill-row">
+                <div class="skill-head">
+                  <span>Diagnostic de pannes</span><span>CV</span>
+                </div>
+                <div class="bar"><i style="--w: 86%"></i></div>
+              </div>
+
+              <p
+                style="
+                  color: var(--muted);
+                  font-size: 11px;
+                  line-height: 1.6;
+                  margin-top: 22px;
+                "
+              >
+                Les barres servent uniquement à visualiser les domaines cités
+                dans le CV ; elles ne représentent pas un niveau chiffré
+                certifié.
+              </p>
+            </div>
+
+            <div class="skill-panel reveal">
+              <div class="label">Soft skills — selon le CV</div>
+              <div class="tags" style="margin-top: 20px">
+                <span class="tag">Résolution de problèmes</span>
+                <span class="tag">Communication</span>
+                <span class="tag">Travail en équipe</span>
+                <span class="tag">Discipline et engagement</span>
+              </div>
+
+              <div class="label" style="margin-top: 35px">
+                Domaines mis en avant
+              </div>
+              <div class="tags" style="margin-top: 20px">
+                <span class="tag">Maintenance</span>
+                <span class="tag">Dépannage</span>
+                <span class="tag">Diagnostic</span>
+                <span class="tag">Schémas électriques</span>
+                <span class="tag">Électricité industrielle</span>
+                <span class="tag">Électricité bâtiment</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="outils">
+        <div class="container">
+          <div class="eyebrow reveal">
+            04 · Outils & environnement technique
+          </div>
+          <h2 class="title reveal">Un univers <span>électrique.</span></h2>
+
+          <div class="skill-layout">
+            <div class="tech-scene reveal">
+              <div class="panel3d">
+                <div class="panel-face">
+                  <div class="panel-inner">
+                    <div class="panel-title">
+                      INDUSTRIAL CONTROL / SCHEMATIC
+                    </div>
+                    <div class="circuit">
+                      <div class="node">ALIMENTATION</div>
+                      <div class="wire"></div>
+                      <div class="node">COMMANDE</div>
+                      <div class="wire"></div>
+                      <div class="node">SORTIE</div>
+                    </div>
+                    <div class="circuit" style="margin-top: 15px">
+                      <div class="node">CAPTEUR</div>
+                      <div class="wire"></div>
+                      <div class="node">DIAGNOSTIC</div>
+                      <div class="wire"></div>
+                      <div class="node">ACTION</div>
+                    </div>
+                    <div class="leds">
+                      <i class="led"></i><i class="led"></i><i class="led"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid3" style="grid-template-columns: 1fr">
+              <article class="card reveal">
+                <div class="label">Informatique</div>
+                <h3>Microsoft Office</h3>
+                <p>Outil informatique cité dans le CV.</p>
+              </article>
+
+              <article class="card reveal">
+                <div class="label">Automatisme / Siemens</div>
+                <h3>TIA Portal (Siemens)</h3>
+                <p>Environnement logiciel cité dans le CV.</p>
+              </article>
+
+              <article class="card reveal">
+                <div class="label">Simulation</div>
+                <h3>Simurelay</h3>
+                <p>Outil de simulation cité dans le CV.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="formation">
+        <div class="container">
+          <div class="eyebrow reveal">05 · Parcours académique</div>
+          <h2 class="title reveal">Formation <span>technique.</span></h2>
+
+          <div class="grid3">
+            <article class="card reveal">
+              <div class="label">2024 — 2026</div>
+              <h3>Diplôme de Technicien en Électricité Industrielle</h3>
+              <p>OFPPT, IPMLI Fahs Anjra, Tanger.</p>
+            </article>
+
+            <article class="card reveal">
+              <div class="label">2022 — 2024</div>
+              <h3>
+                Diplôme de Qualification en Électricité d'Entretien Industrielle
+              </h3>
+              <p>OFPPT, Centre Essabil, Tanger.</p>
+            </article>
+
+            <article class="card reveal">
+              <div class="label">2021 — 2022</div>
+              <h3>Diplôme de Spécialisation en Électricité de Bâtiment</h3>
+              <p>OFPPT, Centre Essabil, Tanger.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="eyebrow reveal">06 · Informations complémentaires</div>
+          <h2 class="title reveal">Au-delà de la <span>technique.</span></h2>
+
+          <div class="info-grid">
+            <article class="info-box reveal">
+              <h3>Langues</h3>
+              <ul>
+                <li>Arabe — Maternelle</li>
+                <li>Français — Passable</li>
+                <li>Anglais — Passable</li>
+              </ul>
+            </article>
+
+            <article class="info-box reveal">
+              <h3>Centres d'intérêt</h3>
+              <ul>
+                <li>Voyage</li>
+                <li>Football</li>
+                <li>Photographie</li>
+              </ul>
+            </article>
+
+            <article class="info-box reveal">
+              <h3>Profil professionnel</h3>
+              <p>
+                Motivé, curieux, orienté apprentissage et développement de
+                compétences techniques.
+              </p>
+            </article>
+
+            <article class="info-box reveal">
+              <h3>Zone professionnelle</h3>
+              <p>
+                Tanger, Maroc — avec un parcours académique et professionnel
+                réalisé à Tanger.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="eyebrow reveal">07 · Contact</div>
+          <h2 class="title reveal">Restons en <span>contact.</span></h2>
+
+          <div class="contact-grid">
+            <a class="contact reveal" href="mailto:oussamaussma01@gmail.com">
+              <strong>Email</strong>
+              <span>oussamaussma01@gmail.com</span>
+            </a>
+
+            <a class="contact reveal" href="tel:+212718933942">
+              <strong>Téléphone</strong>
+              <span>+212 718-933942</span>
+            </a>
+
+            <div class="contact reveal">
+              <strong>Localisation</strong>
+              <span>Tanger — Hay Ben Kirane, Maroc</span>
+            </div>
+
+            <a
+              class="contact reveal"
+              href="CV.DOUMOU.pdf"
+              download="CV.DOUMOU.pdf"
+            >
+              <strong>CV</strong>
+              <span>Télécharger CV.DOUMOU.pdf</span>
+            </a>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="CV.DOUMOU.pdf" download="CV.DOUMOU.pdf"
+              >Télécharger le CV ↗</a
+            >
+            <a class="btn" href="mailto:oussamaussma01@gmail.com"
+              >Envoyer un email</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="float-info">
+      <b>DOUMOU OUSSAMA</b> · Technicien en Électricité Industrielle
+    </div>
+
+    <footer>
+      <span>© 2026 DOUMOU OUSSAMA</span>
+      <span>Portfolio professionnel · Tanger, Maroc</span>
+    </footer>
+
+    <script>
+      const cursor = document.getElementById("cursor");
+      const ring = document.getElementById("ring");
+      let mx = innerWidth / 2,
+        my = innerHeight / 2,
+        rx = mx,
+        ry = my;
+
+      document.addEventListener("mousemove", (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+      });
+
+      function cursorLoop() {
+        cursor.style.left = mx + "px";
+        cursor.style.top = my + "px";
+        rx += (mx - rx) * 0.15;
+        ry += (my - ry) * 0.15;
+        ring.style.left = rx + "px";
+        ring.style.top = ry + "px";
+        requestAnimationFrame(cursorLoop);
+      }
+      cursorLoop();
+
+      document.querySelectorAll("a,.card,.tag,.contact").forEach((el) => {
+        el.addEventListener("mouseenter", () => ring.classList.add("big"));
+        el.addEventListener("mouseleave", () => ring.classList.remove("big"));
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("show");
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => revealObserver.observe(el));
+
+      const canvas = document.getElementById("particles");
+      const ctx = canvas.getContext("2d");
+      let W,
+        H,
+        particles = [];
+
+      function resize() {
+        W = canvas.width = innerWidth;
+        H = canvas.height = innerHeight;
+        particles = Array.from(
+          { length: Math.min(75, Math.floor(innerWidth / 18)) },
+          () => ({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            r: Math.random() * 1.5 + 0.3,
+            vx: (Math.random() - 0.5) * 0.2,
+            vy: (Math.random() - 0.5) * 0.2,
+          }),
+        );
+      }
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (const p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = W;
+          if (p.x > W) p.x = 0;
+          if (p.y < 0) p.y = H;
+          if (p.y > H) p.y = 0;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(99,234,255,.28)";
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      resize();
+      addEventListener("resize", resize);
+      draw();
+    </script>
+  </body>
+</html>
